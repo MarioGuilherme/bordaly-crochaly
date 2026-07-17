@@ -117,6 +117,39 @@
   }
   .photo .ico{font-size:44px}
   .photo img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* ---------- CARROSSEL ---------- */
+  .carousel{
+    position:relative;aspect-ratio:1/1;overflow:hidden;
+    border-bottom:var(--stitch);background:var(--peach);
+  }
+  .slides{display:flex;height:100%;transition:transform .35s ease}
+  @media (prefers-reduced-motion:reduce){.slides{transition:none}}
+  .slides img{width:100%;height:100%;flex:0 0 100%;object-fit:cover;display:block}
+  .c-btn{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:34px;height:34px;border-radius:50%;
+    border:2px dashed var(--brown-soft);
+    background:rgba(255,249,241,.9);color:var(--brown);
+    font-size:20px;font-weight:700;line-height:1;
+    cursor:pointer;transition:transform .15s ease;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .c-btn:hover{transform:translateY(-50%) scale(1.1)}
+  .c-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .c-prev{left:10px}
+  .c-next{right:10px}
+  .dots{
+    position:absolute;bottom:10px;left:0;right:0;
+    display:flex;gap:7px;justify-content:center;
+  }
+  .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:rgba(255,249,241,.75);
+    border:1.5px solid var(--brown-soft);
+    cursor:pointer;padding:0;
+  }
+  .dot.on{background:var(--brown)}
   .info{padding:16px 18px 20px;text-align:center;flex:1;display:flex;flex-direction:column;gap:8px}
   .info h3{font-size:1.1rem;font-weight:700}
   .info .detail{font-size:.82rem;color:var(--brown-soft);font-weight:600;line-height:1.5;flex:1}
@@ -213,22 +246,33 @@
       <button class="filter-btn active" data-filter="todos">Todas</button>
       <button class="filter-btn" data-filter="pingente">🔑 Pingentes &amp; chaveiros</button>
       <button class="filter-btn" data-filter="boneco">🧸 Bonecos (amigurumi)</button>
-      <button class="filter-btn" data-filter="sousplat">🍽️ Sousplats</button>
+      <button class="filter-btn" data-filter="supla">🍽️ Suplas</button>
       <button class="filter-btn" data-filter="vestuario">🧣 Vestuário</button>
       <button class="filter-btn" data-filter="decoracao">🏡 Decoração</button>
     </div>
 
     <div class="grid" id="galeria">
 
-      <!-- Para usar suas fotos: troque o conteúdo de .photo por
-           <img src="sua-foto.jpg" alt="Nome da peça">
+      <!-- FOTOS: cada peça tem um carrossel com 3 imagens de exemplo
+           (placeholders). Para usar as suas, basta trocar o src de cada
+           <img> pelo link/arquivo da sua foto. Pode adicionar ou remover
+           <img> à vontade — as bolinhas se ajustam sozinhas.
 
            Os botões "Comprar na loja" levam para a página inicial da
            Nuvemshop. Se quiser que cada um abra direto o produto,
            troque o link pelo endereço do produto específico. -->
 
       <article class="piece" data-cat="pingente">
-        <div class="photo"><span class="ico">👸🏻</span><span>foto da peça aqui</span></div>
+        <div class="carousel">
+          <div class="slides">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/13-099affbf44c1234f4e17819989889267-1024-1024.webp" alt="Branca de Neve — foto 1" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/15-b4e267769878d80c4617819990426973-1024-1024.webp" alt="Branca de Neve — foto 2" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/14-d0ce6348668e7a6b2017819990427456-1024-1024.webp" alt="Branca de Neve — foto 3" loading="lazy">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
           <span class="tag">Pingente</span>
           <h3>Branca de Neve</h3>
@@ -238,17 +282,36 @@
       </article>
 
       <article class="piece" data-cat="pingente">
-        <div class="photo"><span class="ico">🌹</span><span>foto da peça aqui</span></div>
+        <div class="carousel">
+          <div class="slides">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/16-d6f6425760797726bd17819991330904-1024-1024.webp" alt="Bela — foto 1" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/19-810498e33134f37d4617819991378358-1024-1024.webp" alt="Bela — foto 2" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/18-260e85936914871b7617819991378072-1024-1024.webp" alt="Bela — foto 3" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/17-8c0d0def8b71f020eb17819991382444-1024-1024.webp" alt="Bela — foto 4" loading="lazy">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
           <span class="tag">Pingente</span>
-          <h3>Bela</h3>
+          <h3>Bela e a Fera</h3>
           <span class="detail">Fio de algodão · ~6 cm</span>
           <a class="buy-btn" href="https://bordalycrochaly.lojavirtualnuvem.com.br/" target="_blank" rel="noopener">🛒 Comprar na loja</a>
         </div>
       </article>
 
       <article class="piece" data-cat="pingente">
-        <div class="photo"><span class="ico">🫧</span><span>foto da peça aqui</span></div>
+        <div class="carousel">
+          <div class="slides">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/1-0a8e4c1d78ce32b54117819991972269-1024-1024.webp" alt="Cinderela — foto 1" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/3-c754af3ca41da0eac217819992079178-1024-1024.webp" alt="Cinderela — foto 2" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/2-c876aa7f4e158721db17819992075936-1024-1024.webp" alt="Cinderela — foto 3" loading="lazy">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
           <span class="tag">Pingente</span>
           <h3>Cinderela</h3>
@@ -258,8 +321,15 @@
       </article>
 
       <article class="piece" data-cat="pingente">
-        <div class="photo">
-          <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/13-099affbf44c1234f4e17819989889267-1024-1024.webp">
+        <div class="carousel">
+          <div class="slides">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/10-18f51689cd7e4a5fa717819992212108-1024-1024.webp" alt="Ariel — foto 1" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/12-7f362f31736c31057417819992271272-1024-1024.webp" alt="Ariel — foto 2" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/11-d30cdb3bf780ad3cd017819992270357-1024-1024.webp" alt="Ariel — foto 3" loading="lazy">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
         </div>
         <div class="info">
           <span class="tag">Pingente</span>
@@ -270,7 +340,16 @@
       </article>
 
       <article class="piece" data-cat="pingente">
-        <div class="photo"><span class="ico">🧚</span><span>foto da peça aqui</span></div>
+        <div class="carousel">
+          <div class="slides">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/7-bc92b17abee24e87a817819992757379-1024-1024.webp" alt="Tinkerbell — foto 1" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/9-cc2c774d0081724d6617819992801754-1024-1024.webp" alt="Tinkerbell — foto 2" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/8-ab05789876673dd03717819992804500-1024-1024.webp" alt="Tinkerbell — foto 3" loading="lazy">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
           <span class="tag">Pingente</span>
           <h3>Tinkerbell</h3>
@@ -280,7 +359,16 @@
       </article>
 
       <article class="piece" data-cat="pingente">
-        <div class="photo"><span class="ico">🌸</span><span>foto da peça aqui</span></div>
+        <div class="carousel">
+          <div class="slides">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/5-991b9909a350bb6b6e17819993000101-1024-1024.webp" alt="Aurora — foto 1" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/6-be7a863acb076cdb2317819993053917-1024-1024.webp" alt="Aurora — foto 2" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/4-33128c1c62dcf9b7dd17819993054323-1024-1024.webp" alt="Aurora — foto 3" loading="lazy">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
           <span class="tag">Pingente</span>
           <h3>Aurora</h3>
@@ -290,7 +378,16 @@
       </article>
 
       <article class="piece" data-cat="boneco">
-        <div class="photo"><span class="ico">🐻‍❄️</span><span>foto da peça aqui</span></div>
+        <div class="carousel">
+          <div class="slides">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/1111-408f1739d9c393ae2617820012128665-1024-1024.webp" alt="Pibble — foto 1" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/33333-aec2029b16143daaa817820012176480-1024-1024.webp" alt="Pibble — foto 2" loading="lazy">
+            <img src="https://dcdn-us.mitiendanube.com/stores/005/703/941/products/2222-718be5dc7f90a9271217820012212172-1024-1024.webp" alt="Pibble — foto 3" loading="lazy">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
           <span class="tag">Boneco</span>
           <h3>Pibble</h3>
@@ -302,18 +399,30 @@
       <!-- ===== EXEMPLOS DAS OUTRAS CATEGORIAS =====
            Edite ou apague estes cards conforme as peças que você fizer -->
 
-      <article class="piece" data-cat="sousplat">
-        <div class="photo"><span class="ico">🍽️</span><span>foto da peça aqui</span></div>
+      <article class="piece" data-cat="supla">
+        <div class="carousel">
+          <div class="slides">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
-          <span class="tag">Sousplat</span>
-          <h3>Sousplat redondo</h3>
+          <span class="tag">Supla</span>
+          <h3>Supla redonda</h3>
           <span class="detail">Barbante ou fio náutico · ~35 cm<br>Cores personalizadas · jogo com 4 ou 6</span>
           <a class="buy-btn soft" href="#contato">💬 Encomendar</a>
         </div>
       </article>
 
       <article class="piece" data-cat="vestuario">
-        <div class="photo"><span class="ico">🧣</span><span>foto da peça aqui</span></div>
+        <div class="carousel">
+          <div class="slides">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
           <span class="tag">Vestuário</span>
           <h3>Touca / cachecol</h3>
@@ -323,7 +432,13 @@
       </article>
 
       <article class="piece" data-cat="decoracao">
-        <div class="photo"><span class="ico">🏡</span><span>foto da peça aqui</span></div>
+        <div class="carousel">
+          <div class="slides">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
           <span class="tag">Decoração</span>
           <h3>Peças para casa</h3>
@@ -333,7 +448,13 @@
       </article>
 
       <article class="piece" data-cat="boneco">
-        <div class="photo"><span class="ico">💌</span><span>sua ideia aqui</span></div>
+        <div class="carousel">
+          <div class="slides">
+          </div>
+          <button class="c-btn c-prev" aria-label="Foto anterior">‹</button>
+          <button class="c-btn c-next" aria-label="Próxima foto">›</button>
+          <div class="dots"></div>
+        </div>
         <div class="info">
           <span class="tag">Personalizado</span>
           <h3>Amigurumi sob encomenda</h3>
@@ -431,6 +552,42 @@
 
       vazio.style.display = visiveis === 0 ? 'block' : 'none';
     });
+  });
+
+  // ---------- CARROSSEL ----------
+  document.querySelectorAll('.carousel').forEach(car => {
+    const slides = car.querySelector('.slides');
+    const imgs = slides.querySelectorAll('img');
+    const dotsBox = car.querySelector('.dots');
+    let idx = 0;
+
+    imgs.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' on' : '');
+      d.setAttribute('aria-label', 'Ir para a foto ' + (i + 1));
+      d.addEventListener('click', () => go(i));
+      dotsBox.appendChild(d);
+    });
+    const dots = dotsBox.querySelectorAll('.dot');
+
+    function go(i) {
+      idx = (i + imgs.length) % imgs.length;
+      slides.style.transform = 'translateX(-' + (idx * 100) + '%)';
+      dots.forEach((d, j) => d.classList.toggle('on', j === idx));
+    }
+
+    car.querySelector('.c-prev').addEventListener('click', () => go(idx - 1));
+    car.querySelector('.c-next').addEventListener('click', () => go(idx + 1));
+
+    // swipe no celular
+    let x0 = null;
+    car.addEventListener('touchstart', e => x0 = e.touches[0].clientX, {passive:true});
+    car.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+      x0 = null;
+    }, {passive:true});
   });
 </script>
 
